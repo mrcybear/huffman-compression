@@ -15,7 +15,7 @@ public class BitStackTest {
     }
 
     @Test(expected = BitStackEmptyException.class)
-    public void popCallWhenStackIsEmptyThrowsException() throws BitStackEmptyException {
+    public void popWhenStackIsEmptyThrowsException() throws BitStackEmptyException {
         stack.pop();
     }
 
@@ -38,7 +38,7 @@ public class BitStackTest {
     }
 
     @Test(expected = BitStackEmptyException.class)
-    public void popWhenStackIsEmptyThrowsException() throws BitStackFullException, BitStackEmptyException {
+    public void popWhenStackWasEmptiedThrowsException() throws BitStackFullException, BitStackEmptyException {
         for (int i = 0; i < 3; i++) {
             stack.push(true);
         }
@@ -97,7 +97,7 @@ public class BitStackTest {
     }
 
     @Test(expected = BitStackEmptyException.class)
-    public void peekCallWhenStackIsEmptyThrowsException() throws BitStackEmptyException {
+    public void peekWhenStackIsEmptyThrowsException() throws BitStackEmptyException {
         stack.peek();
     }
 
@@ -117,7 +117,7 @@ public class BitStackTest {
 
 
     @Test(expected = BitStackEmptyException.class)
-    public void peekWhenStackIsEmptyThrowsException() throws BitStackFullException, BitStackEmptyException {
+    public void peekWhenStackWasEmptiedThrowsException() throws BitStackFullException, BitStackEmptyException {
         for (int i = 0; i < 3; i++) {
             stack.push(true);
         }
@@ -157,7 +157,7 @@ public class BitStackTest {
     }
 
     @Test(expected = BitStackEmptyException.class)
-    public void bitsCallWhenStackIsEmptyThrowsException() throws BitStackFullException, BitStackEmptyException {
+    public void bitsWhenStackWasEmptiedThrowsException() throws BitStackFullException, BitStackEmptyException {
         for (int i = 0; i < 3; i++) {
             stack.push(true);
         }
