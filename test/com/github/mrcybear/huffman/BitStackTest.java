@@ -138,12 +138,46 @@ public class BitStackTest {
     }
 
     @Test(expected = BitStackEmptyException.class)
-    public void bitsCallWhenStackIsEmptyThrowsException() throws BitStackEmptyException {
+    public void bitsWhenStackIsEmptyThrowsException() throws BitStackEmptyException {
         stack.bits();
     }
 
+    @Test
+    public void bitsReturnsABitMaskOfTheStackContent() throws BitStackFullException, BitStackEmptyException {
+        stack.push(true);
+        assertSame(0b1, stack.bits());
+        stack.push(false);
+        assertSame(0b01, stack.bits());
+        stack.push(true);
+        assertSame(0b101, stack.bits());
+        stack.pop();
+        assertSame(0b01, stack.bits());
+        stack.pop();
+        assertSame(0b1, stack.bits());
+    }
+
     @Test(expected = BitStackEmptyException.class)
-    public void bitsViceVersaCallWhenStackIsEmptyThrowsException() throws BitStackEmptyException {
+    public void bitsCallWhenStackIsEmptyThrowsException() throws BitStackFullException, BitStackEmptyException {
+        for (int i = 0; i < 3; i++) {
+            stack.push(true);
+        }
+        for (int i = 0; i < 3; i++) {
+            stack.pop();
+        }
+        // Now stack is empty
+        stack.bits();
+    }
+
+    @Test
+    public void bitsWhenStackIsFullReturnsTheStackContent() throws BitStackFullException, BitStackEmptyException {
+        for (int i = 0; i < 32; i++) {
+            stack.push(true);
+        }
+        assertSame(0xFFFFFFFF, stack.bits());
+    }
+
+    @Test(expected = BitStackEmptyException.class)
+    public void bitsViceVersaWhenStackIsEmptyThrowsException() throws BitStackEmptyException {
         stack.bitsViceVersa();
     }
 }
