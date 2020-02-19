@@ -55,7 +55,7 @@ public class BitStack {
         int reversedMask = (0x01 << (bitNumber - 1));
         int originalMask = 0x01;
         for (int i = 0; i < bitNumber; i++) {
-            if ((bits & reversedMask) > 0) {
+            if ((bits & reversedMask) != 0) {
                 reversed |= originalMask;
             }
             reversedMask >>>= 1;
